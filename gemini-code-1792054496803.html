@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ética, Privacidad y Seguridad en IA - UNESCO y México</title>
+<style>
+  :root {
+    --bg-dark: #0b1120;
+    --card-bg: #1e293b;
+    --cyan: #38bdf8;
+    --emerald: #10b981;
+    --purple: #a855f7;
+    --amber: #f59e0b;
+    --rose: #f43f5e;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+  .slide {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    padding: 45px 70px 80px 70px;
+    background: radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.12), transparent 40%),
+                radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.1), transparent 40%),
+                var(--bg-dark);
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeIn 0.4s ease-out;
+  }
+  .slide.active { display: flex; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .header-tag {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--cyan);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 3.1rem;
+    line-height: 1.15;
+    background: linear-gradient(90deg, #ffffff, #38bdf8, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: 2.1rem;
+    color: #fff;
+    margin-bottom: 18px;
+    border-left: 5px solid var(--cyan);
+    padding-left: 16px;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: var(--cyan);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  p, li {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+  }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    align-items: stretch;
+  }
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    flex: 1;
+  }
+  .grid-10 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .mini-card {
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+  .mini-card strong {
+    display: block;
+    color: var(--cyan);
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  .mini-card span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .illustration-box {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px dashed rgba(56, 189, 248, 0.35);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    left: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+  }
+  .btn-group {
+    pointer-events: auto;
+    display: flex;
+    gap: 10px;
+  }
+  button {
+    background: var(--card-bg);
+    color: #fff;
+    border: 1px solid var(--cyan);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button:hover { background: var(--cyan); color: #000; }
+  .badge {
+    font-size: 0.78rem;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--emerald);
+    width: fit-content;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- DIAPOSITIVA 1: PORTADA -->
+<div class="slide active">
+  <div><span class="header-tag">Ingeniería en Inteligencia Artificial</span></div>
+  <div class="grid-2" style="align-items:center;">
+    <div>
+      <h1>Regulaciones Internacionales y Nacionales sobre Ética, Privacidad y Seguridad en IA</h1>
+      <p style="font-size:1.25rem; color:var(--text-muted); margin-bottom:24px;">
+        Análisis integral de la Recomendación sobre la Ética de la IA de la UNESCO, el AI Act de la Unión Europea y las iniciativas legislativas en México (2023–2025).
+      </p>
+      <div class="card" style="border-left: 4px solid var(--emerald);">
+        <h3>📌 Contenido de la Exposición</h3>
+        <ul>
+          <li>Análisis de enlaces: Unión Europea, Cámara de Diputados, INFO CDMX y Gobierno CDMX.</li>
+          <li>Marco de la UNESCO (Secciones I a III): Valores y 10 Principios Éticos.</li>
+          <li>Aplicación en Ingeniería en IA, Riesgos, Responsabilidades y Contexto Mexicano.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="illustration-box">
+      <!-- Ilustración Vectorial Integrada -->
+      <svg width="320" height="320" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="95" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 6"/>
+        <circle cx="120" cy="120" r="70" fill="rgba(56,189,248,0.08)" stroke="#10b981" stroke-width="2"/>
+        <!-- Escudo Ético Central -->
+        <path d="M120 55L170 75V120C170 155 148 182 120 195C92 182 70 155 70 120V75L120 55Z" fill="#1e293b" stroke="#38bdf8" stroke-width="4"/>
+        <!-- Balanza / Red Neuronal -->
+        <circle cx="120" cy="95" r="10" fill="#10b981"/>
+        <circle cx="95" cy="135" r="9" fill="#38bdf8"/>
+        <circle cx="145" cy="135" r="9" fill="#38bdf8"/>
+        <circle cx="120" cy="155" r="9" fill="#a855f7"/>
+        <line x1="120" y1="105" x2="95" y2="126" stroke="#f8fafc" stroke-width="2.5"/>
+        <line x1="120" y1="105" x2="145" y2="126" stroke="#f8fafc" stroke-width="2.5"/>
+        <line x1="95" y1="135" x2="145" y2="135" stroke="#38bdf8" stroke-width="2"/>
+        <line x1="95" y1="144" x2="120" y2="155" stroke="#f8fafc" stroke-width="2"/>
+        <line x1="145" y1="144" x2="120" y2="155" stroke="#f8fafc" stroke-width="2"/>
+      </svg>
+      <p style="color:var(--cyan); font-weight:700; margin-top:12px;">Equilibrio entre Innovación Tecnológica y Dignidad Humana</p>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 2: ANÁLISIS DE LINKS INTERNACIONALES Y NACIONALES -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Parte 1 · Análisis de Enlaces</span>
+    <h2>Marco Regulatorio: Unión Europea y México (2023–2025)</h2>
+  </div>
+  <div class="grid-4">
+    <div class="card" style="border-top: 4px solid var(--cyan);">
+      <span class="badge">Unión Europea · AI Act Explorer</span>
+      <h3>🌍 El Explorador de la Ley de IA</h3>
+      <p>Primer reglamento integral vinculante (Reglamento UE 2024/1689) basado en <strong>niveles de riesgo</strong>:</p>
+      <ul>
+        <li><strong>Riesgo Inaceptable (Prohibido):</strong> Puntuación social (<em>social scoring</em>) y vigilancia biométrica masiva.</li>
+        <li><strong>Alto Riesgo:</strong> Salud, educación, justicia y empleo; exige auditoría, gobernanza de datos y supervisión humana.</li>
+        <li><strong>Transparencia (Art. 50):</strong> Informar siempre cuando se interactúa con IA o <em>deepfakes</em>.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--emerald);">
+      <span class="badge">México Federal · 27 Mayo 2023</span>
+      <h3>🏛️ Iniciativa Cámara de Diputados</h3>
+      <p>Impulsa la <strong>Ley de Regulación Ética de la IA y la Robótica</strong>:</p>
+      <ul>
+        <li>Busca crear Normas Oficiales Mexicanas (NOM) con enfoque en derechos humanos, paridad de género y no discriminación.</li>
+        <li>Propone crear el <strong>CMETIAR</strong> (Consejo Mexicano de Ética para la IA y la Robótica) y una Red Nacional de Estadística de IA.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--purple);">
+      <span class="badge">CDMX Local · 4 Octubre 2024</span>
+      <h3>🔐 Iniciativa del Pleno del INFO CDMX</h3>
+      <p>Primera iniciativa de un órgano garante local ante el Congreso de la CDMX (Boletín DCS/169/2024):</p>
+      <ul>
+        <li>Prioriza la <strong>protección de datos personales</strong> y la privacidad desde el diseño.</li>
+        <li>Exige medidas de ciberseguridad y transparencia en algoritmos que procesen datos ciudadanos.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--amber);">
+      <span class="badge">CDMX Local · 7 Mayo 2025</span>
+      <h3>🤝 Grupo "Derechos Digitales e IA"</h3>
+      <p>Instalado por la Jefatura de Gobierno de la CDMX y la ADIP:</p>
+      <ul>
+        <li>Impulsa un <strong>desarrollo tecnológico con enfoque social</strong> y humanista en la capital.</li>
+        <li>Busca cerrar la brecha digital y garantizar que la IA pública respete los derechos digitales.</li>
+      </ul>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 3: UNESCO SECCIONES I A III -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Parte 2 · Documento Central UNESCO (Págs. 1 a 13)</span>
+    <h2>Recomendación sobre la Ética de la IA de la UNESCO (Secciones I a III)</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>📖 Síntesis de las Secciones I y II</h3>
+      <ul>
+        <li><strong>Sección I (Ámbito de aplicación):</strong> Define la ética de la IA como una reflexión normativa sistemática y multicultural que acompaña <strong>todo el ciclo de vida del sistema de IA</strong> (investigación, diseño, desarrollo, despliegue, uso y mantenimiento).</li>
+        <li><strong>Sección II (Fines y objetivos):</strong> Poner la IA al servicio de la humanidad, las sociedades y el medio ambiente; prevenir daños y guiar las leyes de los Estados Miembros.</li>
+      </ul>
+      <div style="margin-top:18px; padding:14px; background:rgba(16,185,129,0.12); border-radius:12px; border:1px solid var(--emerald);">
+        <strong style="color:var(--emerald);">💡 Idea Clave (Pág. 1-13):</strong>
+        <p style="font-size:0.95rem; margin-top:4px;">Ningún sistema de IA debe estar por encima de la dignidad humana ni operar sin trazabilidad o responsabilidad jurídica humana.</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🌟 Sección III: Los 4 Valores Fundamentales</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px;">
+        <div class="mini-card">
+          <div style="font-size:2rem;">⚖️</div>
+          <strong>1. Derechos Humanos y Dignidad</strong>
+          <span>Respeto, protección y promoción de libertades fundamentales.</span>
+        </div>
+        <div class="mini-card">
+          <div style="font-size:2rem;">🌱</div>
+          <strong>2. Medio Ambiente y Ecosistemas</strong>
+          <span>Prosperidad ambiental y descarbonización tecnológica.</span>
+        </div>
+        <div class="mini-card">
+          <div style="font-size:2rem;">🌍</div>
+          <strong>3. Diversidad e Inclusión</strong>
+          <span>Participación equitativa sin importar origen, género o lengua.</span>
+        </div>
+        <div class="mini-card">
+          <div style="font-size:2rem;">🕊️</div>
+          <strong>4. Sociedades Pacíficas y Justas</strong>
+          <span>Solidaridad, interconexión y beneficio compartido.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 4: ANÁLISIS 1 - PRINCIPIOS ÉTICOS FUNDAMENTALES -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Análisis · Bloque 1</span>
+    <h2>1. Principios Éticos Fundamentales de la UNESCO</h2>
+  </div>
+  <div>
+    <div class="grid-10">
+      <div class="mini-card">🎯<strong>1. Proporcionalidad</strong><span>Inocuidad y fin legítimo</span></div>
+      <div class="mini-card">🛡️<strong>2. Seguridad</strong><span>Prevención de ataques y fallos</span></div>
+      <div class="mini-card">🤝<strong>3. Equidad</strong><span>Cero discriminación ni sesgos</span></div>
+      <div class="mini-card">🌿<strong>4. Sostenibilidad</strong><span>Impacto ambiental y ODS</span></div>
+      <div class="mini-card">🔒<strong>5. Intimidad</strong><span>Protección de datos</span></div>
+      <div class="mini-card">👤<strong>6. Supervisión Humana</strong><span>Decisión final siempre humana</span></div>
+      <div class="mini-card">🔍<strong>7. Transparencia</strong><span>Explicabilidad (XAI)</span></div>
+      <div class="mini-card">📋<strong>8. Rendición de Cuentas</strong><span>Auditoría y trazabilidad</span></div>
+      <div class="mini-card">🎓<strong>9. Alfabetización</strong><span>Educación digital abierta</span></div>
+      <div class="mini-card">🏛️<strong>10. Gobernanza</strong><span>Multisectorial y adaptativa</span></div>
+    </div>
+    <div class="card" style="border-left: 5px solid var(--cyan);">
+      <h3>❓ ¿Por qué se insiste tanto en la dignidad humana y los derechos humanos?</h3>
+      <p>
+        Porque los algoritmos de IA hoy influyen en quién recibe un diagnóstico médico, un crédito, un empleo o una sentencia judicial. Si la IA se diseña únicamente bajo criterios de eficiencia matemática o lucro, <strong>las personas son reducidas a simples objetos de datos o perfiles estadísticos</strong>, poniendo en riesgo su autonomía, igualdad e integridad. La dignidad humana es el límite ético innegociable frente a la automatización.
+      </p>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 5: ANÁLISIS 2 - APLICACIÓN PROFESIONAL -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Análisis · Bloque 2</span>
+    <h2>2. Aplicación Profesional en Ingeniería en IA</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>💻 Relación con el trabajo del Ingeniero en IA</h3>
+      <p style="margin-bottom:10px;">Cada decisión técnica del ingeniero materializa o vulnera un principio ético:</p>
+      <ul>
+        <li><strong>Curación de Datasets:</strong> Limpiar sesgos históricos y garantizar representatividad demográfica (<em>Equidad</em>) y anonimización (<em>Intimidad</em>).</li>
+        <li><strong>Arquitectura del Modelo:</strong> Implementar técnicas de IA Explicable (<em>SHAP, LIME</em>) para evitar "cajas negras" en decisiones críticas (<em>Transparencia</em>).</li>
+        <li><strong>Pruebas y Producción:</strong> Ciberseguridad contra ataques adversarios (<em>Seguridad</em>), optimización de cómputo (<em>Sostenibilidad</em>) e interfaces con control humano (<em>Human-in-the-loop</em>).</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--emerald);">
+      <h3>🌐 Dos Escenarios Reales de Aplicación</h3>
+      <div style="margin-bottom:14px; padding:12px; background:rgba(56,189,248,0.1); border-radius:10px;">
+        <strong style="color:var(--cyan);">🏥 Escenario 1: Salud (Diagnóstico Clínico por IA)</strong>
+        <p style="font-size:0.93rem;">Un modelo que detecta lesiones cancerígenas entrenado solo con un grupo poblacional fallará en otros. Requiere <strong>Equidad</strong> en los datos, <strong>Explicabilidad</strong> para mostrar al médico el área sospechosa y <strong>Supervisión Humana</strong> (el médico firma el diagnóstico, no la IA).</p>
+      </div>
+      <div style="padding:12px; background:rgba(168,85,247,0.1); border-radius:10px;">
+        <strong style="color:var(--purple);">⚖️ Escenario 2: Vigilancia y Justicia (Reconocimiento Facial)</strong>
+        <p style="font-size:0.93rem;">El reconocimiento biométrico masivo en espacios públicos puede generar detenciones injustas por falsos positivos. Exige <strong>Proporcionalidad</strong>, <strong>Protección de Datos</strong> y prohibir condenas automáticas basadas en perfiles algorítmicos.</p>
+      </div>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 6: ANÁLISIS 3 - RIESGOS Y RESPONSABILIDADES -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Análisis · Bloque 3</span>
+    <h2>3. Riesgos del Mal Uso y Responsabilidades Éticas</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card" style="border-top: 4px solid var(--rose);">
+      <h3 style="color:var(--rose);">⚠️ Riesgos del Diseño Irresponsable (UNESCO)</h3>
+      <ul>
+        <li><strong>Discriminación y Sesgos Algorítmicos:</strong> Perpetuar desigualdades de género, etnia o clase social.</li>
+        <li><strong>Vigilancia Masiva y Manipulación:</strong> Puntuación social, perfilamiento político, <em>deepfakes</em> y erosión democrática.</li>
+        <li><strong>Opacidad ("Caja Negra"):</strong> Imposibilidad de apelar decisiones automatizadas injustas.</li>
+        <li><strong>Vulneración de Privacidad:</strong> Extracción masiva de datos sin consentimiento informado.</li>
+        <li><strong>Impacto Ambiental y Laboral:</strong> Alto consumo energético/hídrico y precarización o desplazamiento laboral.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--cyan);">
+      <h3>🛡️ Responsabilidades como Futuro/a Profesional</h3>
+      <ul>
+        <li><strong>Ética y Privacidad desde el Diseño (<em>Ethics by Design</em>):</strong> Incorporar filtros éticos y de seguridad desde la concepción del proyecto.</li>
+        <li><strong>Documentación y Trazabilidad Honesta:</strong> Reportar con transparencia las métricas de error, limitaciones y origen de los datos (<em>Model Cards</em>).</li>
+        <li><strong>Auditoría Continua:</strong> Monitorear que el modelo no adquiera sesgos una vez desplegado en el mundo real.</li>
+        <li><strong>Objeción de Conciencia Profesional:</strong> Negarse a programar sistemas diseñados para engañar, discriminar o vulnerar derechos humanos.</li>
+      </ul>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- DIAPOSITIVA 7: ANÁLISIS 4 - EVALUACIÓN CRÍTICA EN MÉXICO -->
+<div class="slide">
+  <div>
+    <span class="header-tag">Análisis · Bloque 4</span>
+    <h2>4. Evaluación Crítica en el Contexto Mexicano Actual</h2>
+  </div>
+  <div class="grid-2">
+    <div class="card" style="border-top: 4px solid var(--amber);">
+      <h3 style="color:var(--amber);">🇲🇽 ¿Son aplicables en México? Barreras y Desafíos</h3>
+      <p style="margin-bottom:8px;"><strong>Sí son aplicables</strong> (como muestran las iniciativas de 2023–2025), pero enfrentan 4 barreras críticas:</p>
+      <ul>
+        <li><strong>1. Fragmentación Legislativa:</strong> Existen iniciativas aisladas, pero aún falta una Ley General Federal aprobada y armonizada con capacidad real de auditoría técnica.</li>
+        <li><strong>2. Brecha Digital y Lingüística:</strong> Desigualdad de acceso a internet en zonas rurales y falta de representación de lenguas indígenas y contextos mexicanos en los modelos.</li>
+        <li><strong>3. Vulnerabilidad en Ciberseguridad:</strong> Filtraciones frecuentes de datos personales y baja cultura de privacidad digital.</li>
+        <li><strong>4. Dependencia Tecnológica:</strong> Uso de modelos extranjeros entrenados con realidades ajenas a México.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--emerald);">
+      <h3 style="color:var(--emerald);">🚀 Propuestas desde nuestro Rol como Estudiantes e Ingenieros</h3>
+      <ul>
+        <li><strong>1. Crear Datasets Mexicanos Abiertos e Inclusivos:</strong> Desarrollar repositorios locales que respeten la diversidad cultural y lingüística de México.</li>
+        <li><strong>2. "Ficha de Impacto Ético" en Proyectos Universitarios:</strong> Evaluar sesgos, privacidad y huella energética en cada proyecto escolar o tesis antes de publicarlo.</li>
+        <li><strong>3. Brigadas de Alfabetización Digital:</strong> Impartir talleres accesibles a la comunidad sobre cómo funciona la IA, detección de fraudes/<em>deepfakes</em> y cuidado de datos.</li>
+        <li><strong>4. Impulsar IA Abierta y Auditable:</strong> Promover modelos transparentes que fortalezcan la soberanía tecnológica nacional.</li>
+      </ul>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<!-- CONTROLES DE NAVEGACIÓN -->
+<div class="controls">
+  <span id="counter" style="color:var(--text-muted); font-weight:600;">Diapositiva 1 de 7</span>
+  <div class="btn-group">
+    <button onclick="changeSlide(-1)">⬅️ Anterior</button>
+    <button onclick="changeSlide(1)">Siguiente ➡️</button>
+  </div>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+
+  function changeSlide(dir) {
+    slides[current].classList.remove('active');
+    current = (current + dir + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    counter.textContent = `Diapositiva ${current + 1} de ${slides.length}`;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+  });
+</script>
+</body>
+</html>
